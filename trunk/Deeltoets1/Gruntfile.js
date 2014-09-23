@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
 
-    // 1. All configuration goes here 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -22,10 +21,14 @@ module.exports = function(grunt) {
 		    dist: {
 		        src: [
                     'js/vendor/transparency.min.js',
+                    'js/vendor/underscore-min.js',
                     'js/vendor/routie.min.js',
-                    'js/View.js',
-                    'js/AboutController.js',
-                    'js/MoviesController.js',
+                    'js/models/JsonModel.js',
+                    'js/views/View.js',
+                    'js/controller/JsonModel.js',
+                    'js/controller/Controller.js',
+                    'js/controller/AboutController.js',
+                    'js/controller/MoviesController.js',
                     'js/App.js',
                 ],
 		        dest: 'js/all.min.js',
@@ -41,8 +44,8 @@ module.exports = function(grunt) {
 
 		watch: {
 		    scripts: {
-		        files: ['css/less/*.less', 'js/*.js'],
-		        tasks: ['less', 'concat', 'uglify'],
+		        files: ['css/less/*.less', 'js/*/*.js'],
+		        tasks: ['less', 'concat'],
 		        options: {
 		            spawn: false,
 		        },
