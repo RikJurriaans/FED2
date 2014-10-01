@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         coffee: {
             compile: {
                 files: {
-                    'js/all.min.js': ['js/coffee/Main.coffee'],
+                    'js/all.min.js': ['js/coffee/Bootstrap.coffee', 'js/coffee/Main.coffee'],
                 }
             }
         },
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 		watch: {
 		    scripts: {
 		        files: ['css/less/*.less', 'js/*/*.coffee', 'js/*/*.js'],
-		        tasks: ['less', 'coffee', 'concat'],
+		        tasks: ['less', 'concatCoffee', 'coffee', 'concat'],
 		        options: {
 		            spawn: false,
 		        },
