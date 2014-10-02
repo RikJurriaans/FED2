@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         coffee: {
             compile: {
                 files: {
-                    'js/all.min.js': ['js/coffee/Main.coffee'],
+                    'js/all.min.js': ['js/coffee/Bootstrap.coffee', 'js/coffee/Main.coffee'],
                 }
             }
         },
@@ -29,6 +29,7 @@ module.exports = function(grunt) {
 		    dist: {
 		        src: [
                     'js/vendor/three.min.js',
+                    'js/vendor/underscore-min.js',
                     'js/all.min.js'
                 ],
 		        dest: 'js/all.min.js',

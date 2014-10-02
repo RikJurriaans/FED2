@@ -21,8 +21,10 @@ module.exports = function(grunt) {
 		    dist: {
 		        src: [
                     'js/vendor/transparency.min.js',
+                    'js/vendor/qwest.js',
                     'js/vendor/underscore-min.js',
                     'js/vendor/routie.min.js',
+                    'js/utils/AjaxUtils.js',
                     'js/models/JsonModel.js',
                     'js/views/View.js',
                     'js/controller/JsonModel.js',
