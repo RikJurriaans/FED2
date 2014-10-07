@@ -1,5 +1,5 @@
 var MoviesController = function() {
-    var _super = new Controller('movies', new JsonModel());
+    var _super = new Controller('movies', new MoviesModel());
 
     var publics = {
 

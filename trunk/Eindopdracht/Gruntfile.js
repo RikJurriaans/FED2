@@ -20,7 +20,10 @@ module.exports = function(grunt) {
         coffee: {
             compile: {
                 files: {
-                    'js/all.min.js': ['js/coffee/Bootstrap.coffee', 'js/coffee/Main.coffee'],
+                    'js/all.min.js': ['js/coffee/utils/Prelude.coffee', 
+                                      'js/coffee/Settings.coffee', 
+                                      'js/coffee/Setup.coffee', 
+                                      'js/coffee/Main.coffee']
                 }
             }
         },
