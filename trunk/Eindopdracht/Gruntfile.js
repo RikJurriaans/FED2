@@ -21,6 +21,10 @@ module.exports = function(grunt) {
             compile: {
                 files: {
                     'js/all.min.js': ['js/coffee/utils/Prelude.coffee', 
+                                      'js/coffee/geom/ThreeObj.coffee', 
+                                      'js/coffee/camera/Camera.coffee', 
+                                      'js/coffee/light/Light.coffee', 
+                                      'js/coffee/interaction/Animation.coffee', 
                                       'js/coffee/Settings.coffee', 
                                       'js/coffee/Setup.coffee', 
                                       'js/coffee/Main.coffee']

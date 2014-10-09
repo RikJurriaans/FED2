@@ -6,7 +6,8 @@ renderReady = ->
     document.body.appendChild(@renderer.domElement)
     @camera.position.z = 5
 
-render = -> @renderer.render(@scene, @camera)
+render = -> 
+    @renderer.render(@scene, @camera)
 
 addToScene = (object) -> @scene.add(object)
 

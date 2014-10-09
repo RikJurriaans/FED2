@@ -1,10 +1,14 @@
-getCube = ->
-    geometry = new THREE.BoxGeometry(1, 1, 1)
-    material = new THREE.MeshBasicMaterial( color: 0x00ff00 )
-    new THREE.Mesh(geometry, material)
+basic = G.create G.lambertMaterial(0xff0000)
+cube = basic G.boxGeometry(x: 1, y: 1, z: 1)
 
+camera = C.perspectiveCamera(45, 0xffffff)
+camera.position.z = 500
 
-objects = [ getCube() ]
+light = L.ambientLight 0x404040
+dirLight = L.directionalLight 0xffffff
+dirLight.position.set 1, 1, 1
+
+objects = [ cube, light, camera ]
 
 # Setup scene, renderer, camera and render.
 Setup.init(Settings.settings)
