@@ -37,6 +37,9 @@ module.exports = function(grunt) {
 		        src: [
                     'js/vendor/three.min.js',
                     'js/vendor/underscore-min.js',
+                    'js/vendor/StereoEffect.js',
+                    'js/vendor/DeviceOrientationControls.js',
+                    'js/vendor/OrbitControls.js',
                     'js/all.min.js'
                 ],
 		        dest: 'js/all.min.js',
