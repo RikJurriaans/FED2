@@ -10,7 +10,6 @@ module 'Setup'
 #     Setup.effect.render(@scene, @camera)
 #     Setup.controls.update()
 
-# addToScene = (object) -> @scene.add(object)
 
 # resizer
 # @param onResize:Function = function that gets called on resize.
@@ -75,17 +74,26 @@ setSize = (renderer, maxWidth, maxHeight) ->
 addToDom = (domElement) -> 
     document.body.appendChild(domElement)
 
-Setup.init = (scene, camera, renderer, controls, 
+addToScene = (scene) -> (object) -> scene.add(object)
+
+Setup.init = (scene, camera, renderer,
                 screenSize = { width: window.innerWidth, height: window.innerHeight }) ->
+    
     # do the setup.
     renderer = setSize(renderer, screenSize.width, screenSize.height) 
     addToDom(renderer.domElement)
 
+    # some random shit.
     camera.position.z = 5
+
+    # TODO: Currying abstraheren zodat het niet meer zo lelijk is.
 
     # curry the render function.
     (renderFunc, frameRate) ->
         setInterval(->
             renderFunc(renderer, camera, scene)
         , frameRate)
+        # another curried function to add objects to the scene.
+        (objects) -> _.map(objects, add(scene))
+
     
