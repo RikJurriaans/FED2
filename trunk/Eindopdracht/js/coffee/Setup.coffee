@@ -1,10 +1,6 @@
 module 'Setup'
 
 
-# renderReady = ->
-#     document.body.appendChild(@renderer.domElement)
-#     @camera.position.z = 5
-
 # render = -> 
 #     # @renderer.render(@scene, @camera)
 #     Setup.effect.render(@scene, @camera)
@@ -64,36 +60,21 @@ module 'Setup'
 #     Setup.effect = new THREE.StereoEffect(settings.renderer)
 #     Setup.effect.setSize(window.innerWidth, window.innerHeight)
 
-#     _.bind(render, settings)
+# Scene :: Scene -> Object -> Scene
+add = (scene) -> (object) -> scene.add(object)
 
+Setup.init = (scene, camera, renderer, controls = null) -> (renderFunc, frameRate) ->
+    scene.add(camera)
 
-setSize = (renderer, maxWidth, maxHeight) -> 
-    renderer.setSize(maxWidth, maxHeight)
-    renderer
+    # standard template for controls object
+    controls = controls(scene, camera, renderer)
 
-addToDom = (domElement) -> 
-    document.body.appendChild(domElement)
+    setInterval(->
+        renderFunc(renderer, camera, scene, controls)
+    , frameRate)
 
-addToScene = (scene) -> (object) -> scene.add(object)
+    # another curried function to add objects to the scene.
+    # Init :: Function -> Function
+    (objects) -> 
+        _.map(objects, add(scene))
 
-Setup.init = (scene, camera, renderer,
-                screenSize = { width: window.innerWidth, height: window.innerHeight }) ->
-    
-    # do the setup.
-    renderer = setSize(renderer, screenSize.width, screenSize.height) 
-    addToDom(renderer.domElement)
-
-    # some random shit.
-    camera.position.z = 5
-
-    # TODO: Currying abstraheren zodat het niet meer zo lelijk is.
-
-    # curry the render function.
-    (renderFunc, frameRate) ->
-        setInterval(->
-            renderFunc(renderer, camera, scene)
-        , frameRate)
-        # another curried function to add objects to the scene.
-        (objects) -> _.map(objects, add(scene))
-
-    

@@ -1,4 +1,7 @@
-module 'C'
+module 'Camera'
 
-C.perspectiveCamera = (degrees, color) -> 
-    new THREE.PerspectiveCamera(degrees, Settings.width / Settings.height, 1, 1000)
+Camera.perspectiveCamera = -> 
+    ding = new THREE.PerspectiveCamera(90, 1, 0.001, 700)
+    ding.position.z = 5
+    ding
+

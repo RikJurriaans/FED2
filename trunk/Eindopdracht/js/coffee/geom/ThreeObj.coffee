@@ -1,18 +1,25 @@
-module 'G'
+module 'ThreeObj'
 
-G.basicMaterial = (color) ->
+ThreeObj.set = (object) -> 
+    (property) -> 
+        (val) ->
+            object.position[property] = val
+            object
+    
+
+ThreeObj.basicMaterial = (color) ->
     new THREE.MeshBasicMaterial( color: color )
 
-G.lambertMaterial = (color) ->
+ThreeObj.lambertMaterial = (color) ->
     new THREE.MeshLambertMaterial( color: color )
 
-G.boxGeometry = (size) ->
+ThreeObj.boxGeometry = (size) ->
     new THREE.BoxGeometry(size.x, size.y, size.z)
 
-G.sphereGeometry = (radius, segments) ->
+ThreeObj.sphereGeometry = (radius, segments) ->
     new THREE.CircleGeometry(radius, segments)
 
-G.create = (material) ->
+ThreeObj.create = (material) ->
     (geometry) -> 
         new THREE.Mesh(geometry, material)
 
