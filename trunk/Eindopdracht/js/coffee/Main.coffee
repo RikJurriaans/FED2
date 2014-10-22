@@ -1,29 +1,31 @@
-Setup.init(
-    new THREE.Scene,
-    Camera.perspectiveCamera(),
-    _.compose(Cardboard.effect, Render.fsRenderer)(),
-    Cardboard.init
-)((renderer, camera, scene, controls) ->
+# Rik Jurriaans 2014.
+# Functional google cardboard experiment.
 
-    camera.updateProjectionMatrix()
 
-    console.log controls.controls.freeze
-    if controls.controls.freeze is false
-        controls.controls.update()
-    else controls.orbitControls.update()
+# Create a new function out of smaller functions.
+basic = _.compose(ThreeObj.create, ThreeObj.lambertMaterial)
 
-    renderer.effect.render(scene, camera)
+cube = basic(0x0000ff)(ThreeObj.boxGeometry(x: 2, y: 2, z: 2))
+cube.overdraw = true
 
-, 1000 / 24)((-> 
-    basic = _.compose(ThreeObj.create, ThreeObj.lambertMaterial)
+light = L.ambientLight 0x000044
 
-    cube = basic(0x0000ff)(ThreeObj.boxGeometry(x: 2, y: 2, z: 2))
-    cube.overdraw = true
+dirLight = L.directionalLight 0xffffff
+dirLight.position.set(0.3, 1, 0.4).normalize()
 
-    light = L.ambientLight 0x000044
 
-    dirLight = L.directionalLight 0xffffff
-    dirLight.position.set(0.3, 1, 0.4).normalize()
+camera = Camera.perspectiveCamera()
+renderer = _.compose(Cardboard.effect, Render.fsRenderer)()
+controls = Cardboard.init()
 
-    [cube, light, dirLight])()
-)
+Setup.init(camera, renderer, controls)(
+    (renderer, camera, scene, controls) ->
+        camera.updateProjectionMatrix()
+
+        if controls.controls.freeze is false
+            controls.controls.update()
+        else controls.orbitControls.update()
+
+        renderer.effect.render(scene, camera)
+    , Render.framerate(30)
+)(cube, light, dirLight)

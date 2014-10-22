@@ -2,14 +2,7 @@ module 'Cardboard'
 
 fullBrowser = (effect) -> effect.setSize(window.innerWidth, window.innerHeight)
 
-# Renderer :: Renderer -> Renderer
-Cardboard.effect = (renderer) -> 
-    renderer.effect = new THREE.StereoEffect(renderer)
-    fullBrowser(renderer.effect)
-    renderer
-
 fullscreen = ->
-    console.log 'hallo wereld.'
     if (@renderer.domElement.requestFullscreen)
         @renderer.domElement.requestFullscreen()
     else if (@renderer.domElement.msRequestFullscreen)
@@ -26,6 +19,12 @@ initControls = (e) ->
         @orbitControls.enabled = false
         @controls.connect()
         @controls.update()
+
+# Renderer :: Renderer -> Renderer
+Cardboard.effect = (renderer) -> 
+    renderer.effect = new THREE.StereoEffect(renderer)
+    fullBrowser(renderer.effect)
+    renderer
 
 Cardboard.init = (scene, camera, renderer) ->
     controls = new THREE.DeviceOrientationControls(camera, true)
