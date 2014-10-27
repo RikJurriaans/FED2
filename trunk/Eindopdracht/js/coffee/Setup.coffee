@@ -8,7 +8,8 @@ Setup.init = (camera, renderer, controls = null) -> (renderFunc, frameRate) ->
     scene = new THREE.Scene
 
     # standard template for controls object
-    controls = controls(scene, camera, renderer)
+    if controls?
+        controls = controls(scene, camera, renderer)
 
     setInterval(->
         renderFunc(renderer, camera, scene, controls)
