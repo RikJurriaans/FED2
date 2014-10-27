@@ -16,6 +16,6 @@ Setup.init = (camera, renderer, controls = null) -> (renderFunc, frameRate) ->
     , frameRate)
 
     # another curried function to add objects to the scene.
-    (objects...) -> 
+    (objects) -> 
         _.map(objects, add(scene))
 
