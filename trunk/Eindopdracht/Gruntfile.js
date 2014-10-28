@@ -31,6 +31,7 @@ module.exports = function(grunt) {
                                       'js/coffee/light/Light.coffee', 
                                       'js/coffee/interaction/Animation.coffee', 
                                       'js/coffee/Settings.coffee', 
+                                      'js/coffee/stellar/Stellar.coffee', 
                                       'js/coffee/Setup.coffee', 
                                       'js/coffee/Main.coffee']
                 }
