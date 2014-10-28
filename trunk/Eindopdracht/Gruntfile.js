@@ -25,6 +25,7 @@ module.exports = function(grunt) {
                                       'js/coffee/utils/Prelude.coffee', 
                                       'js/coffee/interaction/Cardboard.coffee', 
                                       'js/coffee/interaction/Mouse.coffee', 
+                                      'js/coffee/data/Loading.coffee', 
                                       'js/coffee/render/Render.coffee', 
                                       'js/coffee/geom/ThreeObj.coffee', 
                                       'js/coffee/camera/Camera.coffee', 
@@ -47,6 +48,7 @@ module.exports = function(grunt) {
                     'js/vendor/StereoEffect.js',
                     'js/vendor/DeviceOrientationControls.js',
                     'js/vendor/OrbitControls.js',
+                    'js/vendor/jph.js',
                     'js/all.min.js'
                 ],
 		        dest: 'js/all.min.js',
