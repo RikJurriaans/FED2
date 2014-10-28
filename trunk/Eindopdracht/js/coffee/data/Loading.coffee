@@ -1,3 +1,3 @@
 module 'Loader'
 
-# Loader.load(method)
+# Loader.loadJson = (url) ->

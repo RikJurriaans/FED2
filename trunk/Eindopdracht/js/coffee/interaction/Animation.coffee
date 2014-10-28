@@ -1,4 +1,4 @@
-module 'A'
+module 'Animation'
 
 # Hier moet ik nog even over denken.
 

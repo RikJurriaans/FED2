@@ -1,5 +1,5 @@
-module 'L'
+module 'Light'
 
 # dit kan wat polymorphischer worden.
-L.ambientLight = (color) -> new THREE.AmbientLight(color)
-L.directionalLight = (color) -> new THREE.DirectionalLight(color)
+Light.ambientLight = (color) -> new THREE.AmbientLight(color)
+Light.directionalLight = (color) -> new THREE.DirectionalLight(color)

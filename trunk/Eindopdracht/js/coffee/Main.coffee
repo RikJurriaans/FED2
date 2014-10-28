@@ -1,27 +1,20 @@
 # Rik Jurriaans 2014.
 # google cardboard experiment
+#
+# In this file we build the world.
 
-light = L.ambientLight 0x000044
+ambientLight = Light.ambientLight 0xffffff
 
-dirLight = L.directionalLight 0xffffff
-dirLight.position.set(0.3, 1, 0.4).normalize()
-
-camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.0001, 1000000000)
-camera.position.z = 5
+dirLight = Light.directionalLight 0x000044
+dirLight.position.set(0, 0, 0).normalize()
 
 renderer = _.compose(Cardboard.effect, Render.fsRenderer)()
 controls = Cardboard.init
 
+planets = Stellar.planets('earth', 'jupiter', 'mercury', 'neptune', 'venus', 'mars', 'pluto', 'uranus')
 
-Setup.init(camera, renderer, controls)(
-    (renderer, camera, scene, controls) ->
-        camera.updateProjectionMatrix()
+sceneObjects = _.union([ambientLight, dirLight], Stellar.basic, planets)
 
-        if controls?
-            if controls.controls.freeze is false
-                controls.controls.update()
-            else controls.orbitControls.update()
-
-        renderer.effect.render(scene, camera)
-    , Render.framerate(30)
-)(_.union([light, dirLight], Stellar.basic, Stellar.planets('earth', 'jupiter', 'mercury', 'neptune', 'venus', 'mars', 'pluto', 'uranus')))
+Setup.init(Cardboard.camera(), renderer, controls)(
+    # Here we put animation stuff.
+)(sceneObjects)
